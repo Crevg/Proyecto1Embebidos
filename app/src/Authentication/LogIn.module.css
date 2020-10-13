@@ -1,0 +1,10 @@
+.Form{
+    padding: 20% 5%;
+}
+
+@media (min-width: 768px){
+    .Form {
+        padding: 20% 30%;
+    }
+
+}

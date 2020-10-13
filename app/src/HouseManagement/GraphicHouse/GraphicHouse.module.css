@@ -1,0 +1,559 @@
+/*Layout casa */
+* {
+  box-sizing: border-box;
+}
+
+
+.GraphicHouse {
+  align-items: center;
+  align-content: center;
+}
+
+.maincontainer {
+  margin: 10% 5%;
+  display: grid;
+  width: 90%;
+  grid: 18vh 20vh 20vh / auto auto;
+  grid-gap: 0 10%;
+  border-width: 4px 0 0 4px;
+  position: relative;
+  border: 4px solid rgb(16, 113, 148);
+}
+
+.maincontainer > div {
+  text-align: center;
+  box-sizing: border-box;
+  border-collapse: collapse;
+}
+
+/*Bombillo general */
+
+.bombilloOn {
+  border-radius: 50%;
+  width: 5vw;
+  height: 5vw;
+  border: 3px solid rgb(253, 253, 0);
+  background-color: rgb(253, 253, 0);
+  cursor: pointer;
+}
+
+.bombilloOff {
+  border-radius: 50%;
+  width: 5vw;
+  height: 5vw;
+  border: 3px solid rgb(253, 253, 0);
+  background-color: white;
+  cursor: pointer;
+}
+
+/*Cuartos */
+
+.cuarto {
+  border: 2px solid rgb(16, 113, 148);
+  position: relative;
+}
+
+.cuarto_1 {
+  border-left: none;
+}
+
+.cuarto_2 {
+  border-right: none;
+}
+
+.cuarto_2 > .bombilloOn,
+.cuarto_2 > .bombilloOff {
+  position: absolute;
+  top: calc(50% - 2.5vw);
+  left: calc(25% - 2.5vw);
+}
+
+.cuarto_1 > .bombilloOn,
+.cuarto_1 > .bombilloOff {
+  position: absolute;
+  top: calc(50% - 2.5vw);
+  right: calc(25% - 2.5vw);
+}
+
+/*Cama */
+
+.cama {
+  border: 1px solid rgb(16, 113, 148);
+  width: 60%;
+  height: 55%;
+  position: relative;
+}
+
+.cama_izq {
+  position: absolute;
+  top: 25%;
+  border-left: none;
+  border-radius: 0% 5% 5% 0%;
+  box-shadow: 1px 1px 1px;
+}
+
+.cama_der {
+  position: absolute;
+  top: 25%;
+  right: 0;
+  border-right: none;
+  border-radius: 5% 0% 0% 5%;
+  box-shadow: -1px 1px 1px;
+}
+
+.almohada {
+  background-color: rgb(162, 223, 245);
+  border: 1px solid rgb(16, 113, 148);
+  width: 15%;
+  height: 48%;
+  border-radius: 10%;
+}
+
+.almohada_izq {
+  position: relative;
+  left: 0;
+}
+
+.almohada_der {
+  position: absolute;
+  right: 0;
+}
+
+.almohada_2.almohada_der {
+  bottom: 0%;
+}
+
+.almohada_2.almohada_izq {
+  position: absolute;
+  bottom: 0%;
+}
+
+.cobija {
+  position: absolute;
+  top: 0%;
+  border: 1px solid rgb(16, 113, 148);
+  height: 100%;
+}
+
+.cobija_der {
+  right: 25%;
+}
+
+.cobija_izq {
+  left: 25%;
+}
+
+/*Baño */
+
+.bano {
+  position: relative;
+  border-left: 2px solid rgb(16, 113, 148);
+}
+
+.tina_afuera {
+  width: 30%;
+  height: 35%;
+  border: 1px solid rgb(16, 113, 148);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.tina_adentro {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 90%;
+  height: 80%;
+  background-color: rgb(16, 113, 148);
+}
+
+.inodoro_container {
+  position: relative;
+  left: 25%;
+  width: 10%;
+  height: 20%;
+}
+
+.inodoro_arriba {
+  width: 100%;
+  height: 25%;
+  border: 1px solid rgb(16, 113, 148);
+}
+
+.inodoro_abajo {
+  width: 80%;
+  position: relative;
+  left: 10%;
+  height: 75%;
+  border: 1px solid rgb(16, 113, 148);
+  border-radius: 0 0 25% 25%;
+  border-top: none;
+  box-shadow: 0 0 1px;
+}
+
+/*Cocina */
+
+.cocina {
+  position: relative;
+  box-sizing: content-box;
+}
+
+.mueble_1_cocina {
+  width: 20%;
+  height: 70%;
+  border: 2px solid rgb(16, 113, 148);
+  position: absolute;
+  top: 10%;
+  left: 0;
+  border-bottom: none;
+  border-left: 0;
+}
+
+.mueble_2_cocina {
+  width: 70%;
+  height: 21%;
+  border: 2px solid rgb(16, 113, 148);
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  border-bottom: none;
+  border-left: 0;
+}
+
+.cocina > .bombilloOn,
+.cocina > .bombilloOff {
+  position: absolute;
+  top: calc(40% - 2.5vw);
+  left: calc(50% - 2.5vw);
+}
+
+/*Sala */
+
+.sala {
+  position: relative;
+}
+
+.sala > .bombilloOn,
+.sala > .bombilloOff {
+  position: absolute;
+  top: calc(50% - 2.5vw);
+  left: calc(50% - 2.5vw);
+}
+
+.sofa {
+  border-radius: 10% 0 0 10%;
+  border: 1px solid rgb(16, 113, 148);
+  border-right: none;
+  position: absolute;
+  right: 0;
+  top: 15%;
+  width: 12%;
+  height: 70%;
+  box-shadow: -1px 1px 1px;
+}
+
+.sofa > div {
+  position: absolute;
+  height: 80%;
+  top: 10%;
+  left: 0;
+  width: 80%;
+  border-radius: 0 10% 10% 0;
+  border: 1px solid rgb(16, 113, 148);
+  border-left: none;
+  background-color: rgb(162, 223, 245);
+  box-shadow: 0 0 1px inset rgb(16, 113, 148);
+}
+
+.mesa_sala {
+  width: 8%;
+  height: 20%;
+  position: absolute;
+  top: 40%;
+  right: 25%;
+  background-color: rgb(162, 223, 245);
+  border: 1px solid rgb(16, 113, 148);
+  box-shadow: 1px 1px 1px;
+}
+
+/*Comedor */
+
+.comedor {
+  position: relative;
+}
+
+.comedor > .bombilloOn,
+.comedor > .bombilloOff {
+  position: absolute;
+  top: calc(50% - 2.5vw);
+  left: calc(50% - 2.5vw);
+}
+
+.mesa_comedor {
+  position: absolute;
+  width: 30%;
+  height: 70%;
+  top: 25%;
+  left: 25%;
+}
+
+.silla_comedor {
+  border-radius: 50%;
+  width: 1vw;
+  height: 1vw;
+  background-color: rgb(162, 223, 245);
+  position: absolute;
+}
+
+.silla_1 {
+  left: 20%;
+}
+.silla_2 {
+  right: 20%;
+}
+.silla_3 {
+  bottom: 0;
+  left: 20%;
+}
+.silla_4 {
+  bottom: 0;
+  right: 20%;
+}
+
+.mesa_centro {
+  width: 80%;
+  height: 60%;
+  border: 1px solid rgb(16, 113, 148);
+  top: 20%;
+  left: 10%;
+  position: absolute;
+  border-radius: 5%;
+  box-shadow: 1px 1px 1px;
+}
+
+/*Puertas */
+
+.puerta_container {
+  position: absolute;
+  width: 10%;
+  height: 20%;
+
+  overflow: hidden;
+}
+
+.puerta_gira {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  border: 1px solid rgb(16, 113, 148);
+  border-radius: 50%;
+  visibility: visible;
+}
+
+.puerta {
+  border: 1px solid rgb(16, 113, 148);
+  position: absolute;
+}
+
+.puerta_gira_cerrada {
+  visibility: hidden;
+}
+
+/* Puerta cuarto 1 */
+
+.cuarto_1 .puerta_container {
+  right: 0;
+  top: 2%;
+}
+
+.cuarto_1 .puerta_gira {
+  top: -100%;
+}
+
+.cuarto_1 .puerta_abierta {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+}
+
+.cuarto_1 .puerta_cerrada {
+  top: 0;
+  right: 0;
+  width: 10%;
+  height: 100%;
+}
+
+/* Puerta cuarto 2 */
+
+.cuarto_2 .puerta_container {
+  bottom: 0%;
+  left: 2%;
+}
+
+.cuarto_2 .puerta_gira {
+  left: -100%;
+}
+
+.cuarto_2 .puerta_abierta {
+  top: 0;
+  left: 0;
+  width: 10%;
+  height: 100%;
+}
+
+.cuarto_2 .puerta_cerrada {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 10%;
+}
+
+/* Puerta frente */
+
+.sala .puerta_container {
+  bottom: 0%;
+  left: 2%;
+}
+
+.sala .puerta_gira {
+  left: -100%;
+}
+
+.sala .puerta_abierta {
+  top: 0;
+  left: 0;
+  width: 10%;
+  height: 100%;
+}
+
+.sala .puerta_cerrada {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 10%;
+}
+
+/* Puerta Atras */
+.comedor .puerta_container {
+  top: 0%;
+  right: 2%;
+}
+
+.comedor .puerta_gira {
+  top: -100%;
+  right: -100%;
+  
+}
+
+.comedor .puerta_abierta {
+  top: 0;
+  right: 0;
+  width: 10%;
+  height: 100%;
+}
+
+.comedor .puerta_cerrada {
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 10%;
+}
+
+/* Puerta baño estetica */
+
+/*Media queries */
+
+@media only screen and (min-width: 500px) {
+  .mueble_1_cocina {
+    width: 10%;
+    height: calc(70%+1px);
+  }
+
+  .mueble_2_cocina {
+    width: 80%;
+    left: 10%;
+  }
+
+  .cama {
+    width: 40%;
+    height: 55%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .maincontainer {
+    box-sizing: border-box;
+    width: 50%;
+    margin: 10% 25%;
+    grid: 15vh 20vh 20vh / auto auto;
+  }
+  .bombilloOn,
+  .bombilloOff {
+    width: 3vw;
+    height: 3vw;
+  }
+
+  .cuarto_2 > .bombilloOn,
+  .cuarto_2 > .bombilloOff {
+    position: absolute;
+    top: calc(50% - 1.5vw);
+    left: calc(25% - 1.5vw);
+  }
+
+  .cuarto_1 > .bombilloOn,
+  .cuarto_1 > .bombilloOff {
+    position: absolute;
+    top: calc(50% - 1.5vw);
+    right: calc(25% - 1.5vw);
+  }
+
+  .sala > .bombilloOn,
+  .sala > .bombilloOff {
+    position: absolute;
+    top: calc(50% - 1.5vw);
+    left: calc(50% - 1.5vw);
+  }
+
+  .cocina > .bombilloOn,
+  .cocina > .bombilloOff {
+    position: absolute;
+    top: calc(40% - 1.5vw);
+    left: calc(50% - 1.5vw);
+  }
+
+  .comedor > .bombilloOn,
+  .comedor > .bombilloOff {
+    position: absolute;
+    top: calc(50% - 1.5vw);
+    left: calc(80% - 1.5vw);
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .mesa_comedor {
+    width: 50%;
+    top: 25%;
+    left: 25%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .silla_comedor {
+    width: 0.8vw;
+    height: 0.8vw;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .silla_comedor {
+    width: 2vw;
+    height: 2vw;
+  }
+
+  .comedor > .bombilloOn,
+  .comedor > .bombilloOff {
+    top: calc(50% - 2.5vw);
+    left: calc(80% - 2.5vw);
+  }
+}

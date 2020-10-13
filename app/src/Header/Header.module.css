@@ -1,0 +1,15 @@
+.NaviLink{
+    color: #bfb9b9 !important;
+    margin: 0 5%;
+}
+
+
+.Link{
+    color: #bfb9b9 !important;
+
+}
+
+.Link:hover{
+    text-decoration: none;
+    color: #727272 !important ;
+}

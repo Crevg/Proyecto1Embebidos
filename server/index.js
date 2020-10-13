@@ -1,6 +1,5 @@
 const express = require('express');
 var cors = require('cors')
-const bp = require('body-parser');
 
 const lightRoutes = require("./routes/lights.routes");
 const doorsRoutes = require("./routes/doors.routes");
@@ -24,3 +23,5 @@ app.use("/auth", authRoutes);
 app.listen( 8000, "192.168.100.40", () => {
     console.log("LIstening");
 })
+
+
