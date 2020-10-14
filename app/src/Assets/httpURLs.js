@@ -1,5 +1,5 @@
-//export const BASE = "http://localhost:8000";
-export const BASE = "http://192.168.100.40:8000";
+export const BASE = "http://localhost:5000";
+//export const BASE = "http://192.168.100.40:8000";
 
 export const LIGHTS_API = BASE + "/lights";
 export const LIGHT_SIGNALS_STATUS = LIGHTS_API + "/signalsStatus";
