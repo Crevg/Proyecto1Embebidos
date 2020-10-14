@@ -10,14 +10,14 @@ class Header extends Component {
     checkPath = () => {
         let path = this.props.location.pathname;
         if (path === "/house/graphic") {
-            this.link = <li >  <Link className={Styles.Link} to="/house/text"> Text-based  </Link>  </li>
+            this.link = <li >  <Link className={Styles.Link} to="/house/text"> Simple </Link>  </li>
 
 
         } else if (path === "/house/text") {
             this.link = <li className={Styles.NaviLink}> <Link className={Styles.Link} to="/house/graphic"> Blueprint </Link> </li>
 
         } else {
-            this.link = <li className={Styles.NaviLink}> <Link className={Styles.Link} to="/house/graphic"> House </Link> </li>
+            this.link = <li className={Styles.NaviLink}> <Link className={Styles.Link} to="/house/graphic"> Casa </Link> </li>
 
         }
     }

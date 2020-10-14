@@ -17,11 +17,16 @@ export default class LogIn extends Component {
         this.setState({...this.state, password: password});
     }
 
+    login = (e) => {
+      e.preventDefault()
+      this.props.authenticate(this.state.user, this.state.password)
+
+    }
+
   render() {
-    console.log(this.state.user, this.state.password)
     return (
       <div className={Styles.Form}>
-        <Form>
+        <Form onSubmit={(e) => {this.login(e)}}>
           <FormGroup>
             <Input
               type="text"
@@ -42,7 +47,7 @@ export default class LogIn extends Component {
             ></Input>
           </FormGroup>
           <FormGroup>
-            <Button onClick= {() => this.props.authenticate(this.state.user, this.state.password)} color="primary"> Iniciar sesión </Button>
+            <Button type="submit" color="primary"> Iniciar sesión </Button>
           </FormGroup>
         </Form>
       </div>

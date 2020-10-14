@@ -1,5 +1,6 @@
 import React from "react";
 import Styles from "./GraphicHouse.module.css"
+import {Button} from "reactstrap"
 
 
 export default function GraphicHouse(props) {
@@ -7,6 +8,13 @@ export default function GraphicHouse(props) {
 
     return (
       <div className={Styles.GraphicHouse}>
+
+        <div className={Styles.buttonGroupLights}> 
+          
+        <Button color="primary" onClick={() => props.turnAllOn()}> Encender todas </Button>{ ' '}
+        <Button color="danger" onClick={() => props.turnAllOff()}> Apagar todas </Button>{ ' '}
+        </div>
+
         <div className={Styles.maincontainer}>
 
 
@@ -89,13 +97,6 @@ export default function GraphicHouse(props) {
               <div className={[Styles.puerta, props.isDoorOpened("Front") ? Styles.puerta_abierta : Styles.puerta_cerrada].join(' ')}></div>
             </div>
           </div>
-
-
-
-
-
-
-
 
 
         </div>

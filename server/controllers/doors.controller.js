@@ -1,45 +1,44 @@
+const doors = require('../models/doors')
+const gpio = require("./gpio.controller")
+
 /* Get methods */
 
 module.exports.signalsStatus = (req, res) => {
-    doors= [
-        {
-          name: "Cuarto 1",
-          state: 0,
-        },
-        {
-          name: "Cuarto 2",
-          state: 1,
-        },
-        {
-          name: "Front",
-          state: 0,
-        },
-        {
-          name: "Back",
-          state: 1,
-        },
-      ];
-    res.status(200).send({
-        message: "Success",
-        data: doors
-    });
+  res.status(200).send({
+    message: "Success",
+    data: doors.readAllDoors()
+  });
 }
 
+/* Post */
+module.exports.readSignal = (req, res) => {
+  const name = req.body.name
+  let id = 0
+  if (name === "Cuarto 1") {
+    id = 1
+  }
+  else if (name === "Cuarto 2") {
+    id = 2
+  }
+  else if (name === "Front") {
+    id = 3
+  }
+  else if (name === "Back") {
+    id = 4
+  }
+  if (id === 0) {
+    res.send({
+      message: "Error",
+      error: "Couldn't work with library",
+      data: { name: name, state: state }
+    }).status(500);
+  } else {
+    let signal = gpio.leerPuerta(id)
+    doors.updateDoor(id, signal)
 
-/*Temporary method to get the door signal when changed need to validate C library */
-module.exports.updateSignal = (req, res) => {
-    //USE LIBRARY TO CHANGE STATE
-    //check for errors
-    if (true){
-        res.send({
-            message: "Success",
-            data: {name: "Name", state: "New State"}
-        }).status(200)
-    }else{
-        res.send({
-            message: "Error",
-            error: "Couldn't work with library",
-            data: {name: name, state: state}
-        }).status(500);
-    }
+    res.send({
+      message: "Success",
+      data: { name: name, state: signal }
+    }).status(200)
+  }
 }
