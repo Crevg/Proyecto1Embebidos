@@ -8,10 +8,6 @@ export default function Pictures(props) {
             <div>
                 <Button color="primary" onClick={() => props.takeAPicture()}> Tomar una foto</Button> {' '}
             </div>
-
-
-            {props.photo ? <img src={props.photo} /> : null}
-
         </div>
     )
 }

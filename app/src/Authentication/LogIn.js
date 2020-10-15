@@ -20,7 +20,6 @@ export default class LogIn extends Component {
     login = (e) => {
       e.preventDefault()
       this.props.authenticate(this.state.user, this.state.password)
-
     }
 
   render() {

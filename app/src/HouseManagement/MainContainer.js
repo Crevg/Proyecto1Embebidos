@@ -3,9 +3,8 @@ import { Route } from 'react-router-dom'
 import GraphicHouse from './GraphicHouse/GraphicHouse'
 import TextBasedHouse from './TextBasedHouse/House/TextBasedHouse'
 import axios from 'axios'
-import { LIGHT_SIGNALS_STATUS, DOOR_SIGNALS_STATUS, LIGHT_UPDATE_SIGNAL, LIGHT_TURN_ALL_OFF, LIGHT_TURN_ALL_ON, DOOR_UPDATE_SIGNAL } from '../Assets/httpURLs'
+import { LIGHT_SIGNALS_STATUS, CAMERA_TAKE_PICTURE, DOOR_SIGNALS_STATUS, LIGHT_UPDATE_SIGNAL, LIGHT_TURN_ALL_OFF, LIGHT_TURN_ALL_ON } from '../Assets/httpURLs'
 import Pictures from '../Pictures/Pictures'
-import path from 'path'
 import image from "../Assets/example.png"
 
 export default class MainContainer extends Component {
@@ -43,6 +42,7 @@ export default class MainContainer extends Component {
                 });
             })
             .catch((e) => console.log(e));
+        setInterval(() => this.readDoors(), 5000)
     }
 
     /* Change a light state */
@@ -139,7 +139,6 @@ export default class MainContainer extends Component {
                     return null; //SHOW ERROR MSG
                 }
                 let newLights = response.data.data.map(room => { return { name: room.name, state: room.state } })
-                console.log(newLights)
                 this.setState({
                     ...this.state,
                     lights: newLights
@@ -156,22 +155,41 @@ export default class MainContainer extends Component {
 
     /*UNFINISHED METHODS*/
 
-    readDoors = (name) => {
-        axios.put(DOOR_UPDATE_SIGNAL, { name: name })
+    readDoors = () => {
+        axios.get(DOOR_SIGNALS_STATUS)
             .then(response => {
                 if (response.status < 200 || response.status > 299) {
                     return null; //SHOW ERROR MSG
                 }
+                let newDoors = response.data.data.map(room => { return { name: room.name, state: room.state } })
+                this.setState({
+                    ...this.state,
+                    doors: newDoors
+                })
+            }).catch( e => {
 
             })
     }
 
     takeAPicture = () => {
-        console.log("Taking a pic...")
         /*Call axios to take a picture */
+        axios.get(CAMERA_TAKE_PICTURE)
+            .then(response => {
+                if (response.status < 200 || response.status > 299) {
+                    return null; //SHOW ERROR MSG
+                }
+                alert("Se ha guardado la foto en /home/images")
+                this.setState({
+                    ...this.state,
+                    photo: response.data.data
+                })
+
+            }).catch(e => {
+
+            })
         this.setState({
             ...this.state,
-            photo: image
+            photo: null
         })
     }
 
@@ -202,8 +220,7 @@ export default class MainContainer extends Component {
                     />} />
                 <Route path="/pictures/take" exact render={() =>
                     <Pictures
-                    photo = {this.state.photo}
-                    takeAPicture={this.takeAPicture}
+                        takeAPicture={this.takeAPicture}
                     />} />
             </div>
         )

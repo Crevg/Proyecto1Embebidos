@@ -1,18 +1,24 @@
+
 from flask import Flask
 from flask import request
+from flask import render_template
 from ctypes import *
 from modelos.Cuarto import Cuarto
 from flask_cors import CORS
 
-path = "../Clib/libmylib.so"
-funciones = CDLL(path)
-app = Flask(__name__)
+libraryGPIO = "/usr/lib/libgpio.so.0" #CAMBIAR RUTA
+
+_gpio = CDLL(libraryGPIO)
+
+app = Flask(__name__, static_folder="build/static", template_folder="build")
 CORS(app)
 
 
 luces = [Cuarto("Cuarto 1", 1, 0), Cuarto("Cuarto 2", 2, 0), Cuarto("Comedor", 3, 0), Cuarto("Sala", 4, 0), Cuarto("Cocina", 5, 0)]
 puertas = [Cuarto("Cuarto 1", 1, 0), Cuarto("Cuarto 2", 2, 0), Cuarto("Front", 3, 0), Cuarto("Back", 4, 0)]
-#Json
+
+
+#Json de los objetos locales
 def lucesJson():
     return list(map(lambda cuarto: {"name": cuarto.getNombre(), "state": cuarto.getEstado()}, luces))
 
@@ -38,11 +44,11 @@ def actualizarLuz():
     luz = filter(lambda cuarto: cuarto.nombre == nombre, luces )
     id_cuarto = (list(luz)[0].id)
     if (estado == 0):
-        funciones.encender_luz(id_cuarto)
+        _gpio.encender_luz(id_cuarto)
         actualizarLuxAux(id_cuarto, 1)
         return {"message": "Success", "data": lucesJson()}
     else:
-        funciones.apagar_luz(id_cuarto)
+        _gpio.apagar_luz(id_cuarto)
         actualizarLuxAux(id_cuarto, 0)
         return {"message": "Success", "data": lucesJson()}
 
@@ -60,14 +66,14 @@ def actualizarLuxAux_2(estado):
 #Apaga todas las luces
 @app.route('/lights/turnAllOff', methods=["PUT"]) #PUT
 def apagarTodas():
-    funciones.apagar_todo()
+    _gpio.apagar_todo()
     actualizarLuxAux_2(0)
     return {"message": "Success", "data": lucesJson()}
 
 
 @app.route('/lights/turnAllOn', methods=["PUT"]) #PUT
 def encenderTodas():
-    funciones.encender_todo()
+    _gpio.encender_todo()
     actualizarLuxAux_2(1)
     return {"message": "Success", "data": lucesJson()}
 
@@ -79,10 +85,10 @@ def encenderTodas():
 
 @app.route('/doors/signalsStatus',  methods=["GET"]) #GET
 def obtenerPuertas():
-    puerta_1 = funciones.leer_puerta(1)
-    puerta_2 = funciones.leer_puerta(2)
-    puerta_3 = funciones.leer_puerta(3)
-    puerta_4 = funciones.leer_puerta(4)
+    puerta_1 = _gpio.leer_puerta(1)
+    puerta_2 = _gpio.leer_puerta(2)
+    puerta_3 = _gpio.leer_puerta(3)
+    puerta_4 = _gpio.leer_puerta(4)
     puertas[0].setEstado(puerta_1)
     puertas[1].setEstado(puerta_2)
     puertas[2].setEstado(puerta_3)
@@ -115,9 +121,19 @@ def login():
 #Rutas camara
 
 
-@app.route('/cam/photo',  methods=["POST"]) #POST
-def photo():
-    return ""
+@app.route('/cam/photo',  methods=["GET"]) #GET
+def tomarFoto():
+    file = open("./modelos/pics.txt", 'r+')
+    nombre = file.read().splitlines()[0]
+    file.seek(0)
+    numero = int (nombre[-1])
+    numero += 1
+    nombre = nombre[:-1] + str(numero)
+    file.write(nombre)
+    file.truncate()
+    file.close()
+    os.system('fswebcam /home/images/'+nombre+'.jpg')
+    return {"message": "Success", "data": nombre}
 
 
 

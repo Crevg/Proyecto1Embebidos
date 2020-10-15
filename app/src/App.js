@@ -13,7 +13,7 @@ import LogIn from "./Authentication/LogIn";
 function App() {
 
   const [isAuth, setAuth] = useState(false);
-
+  console.log(AUTH_LOG_IN)
   const logIn = (user, pass) => {
     axios.post(AUTH_LOG_IN, { user: user, pass: pass })
       .then(response => {
